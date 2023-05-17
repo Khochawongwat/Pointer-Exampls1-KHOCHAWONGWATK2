@@ -1,40 +1,42 @@
 #include <iostream>
+#include <iomanip>
+#include <cstring>
+ 
+#define SIZE 10
 using namespace std;
-
+ 
 int main(){
-
-  int a;
-  double d;
-  cout<<&a<<" size "<<sizeof(a) <<endl;
-  cout<<&d<<" size "<<sizeof(d) <<endl; 
+  char *pa, *pb, temp;
+  char a[SIZE];
+  int i = 0, j;
   
-  /*  int x,*p;
-    p=&x;
-    x=5;
-
-    cout<< x  <<" "<< *p <<endl;
-    cout<< &x <<" "<<  p <<endl;
-    cout<< &p <<endl;*/
-
-/*Example Array*/
-  /*
-int *ip;
-int a[ ] = {31415, 21828};
-ip = a;
-// alternative:	ip = &a[0];
-
-cout<<a<<endl;			
-cout<<ip<<" "<<*ip<<endl;	
+  cout<<"Input string: ";
+  cin.getline(a, SIZE);
+ 
+  j = strlen(a);
+  pa = &a[0];  
+  pb = &a[j-1];
   
-(*ip)++; 
-cout<<a<<" "<<a[0]<<endl;		
-cout<<ip<<" "<<*ip<<endl; 	
+  cout<<"Original: ";
+  for (int k=0; k < j; k++, pa++){
+    cout<<setw(3)<< *pa;
+  }
+
   
-ip++; 
-cout<<a<<endl;		
-cout<<ip<<" "<<*ip<<endl; 	// print 
-*/
- /*the address is 4324, not 4321
- because the pointer is incremented 						
- by the size of an integer (4 bytes) */
+  pa = &a[0];
+  for(int i = 0; i< j/2; i++){
+    temp = *pa;
+    *pa = *pb;
+    *pb = temp;
+    i++;
+    pa++;
+    pb--;
+  }
+  
+  pa = &a[0];
+  cout<<endl<< "Reverse:  ";
+  for (int k=0; k < j; k++, pa++){
+    cout<<setw(3)<< *pa;
+  }
+  cout << endl;
 }
